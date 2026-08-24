@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+@import "fonts";
+
+:root {
+  --dark-color: #000;
+  --ligth-color: #fff;
+  --primary-color: #AE7AFF;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'JetBrains Mono', sans-serif;
+  background: var(--dark-color);
+  color: var(--ligth-color);
+  line-height: 20px;
+}
+
+
+.btn {
+  border: none;
+  background: var(--primary-color);
+  color: var(--dark-color);
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.h6 {
+  font-size: 18px;
+  font-weight: 800;
+}
