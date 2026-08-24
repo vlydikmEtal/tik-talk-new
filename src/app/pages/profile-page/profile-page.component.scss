@@ -1,0 +1,34 @@
+.profile-page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 24px;
+}
+
+.to-setting-btn {
+  width: min-content;
+}
+
+.subscriber-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.profile-page__main {
+  display: grid;
+  gap: 64px;
+  grid-template-columns: 1fr 350px;
+  padding-top: 24px;
+}
+
+.profile-page__list {
+  display: flex;
+  gap: 6px;
+}
+
+.skills-wrapper__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}

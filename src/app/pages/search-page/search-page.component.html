@@ -1,10 +1,13 @@
 @if (profiles(); as profiles) {
+  <tt-profile-filters></tt-profile-filters>
+
   <div class="profile-card__wrapper">
-
     @for (profile of profiles; track profile.id) {
-      <app-profile-card [profile]="profile"></app-profile-card>
+      <tt-profile-card
+        [profile]="profile"
+        (subscribe)="handleSubscribe($event)"
+      ></tt-profile-card>
     }
-
   </div>
 } @else {
   <p>Профилей нету...</p>

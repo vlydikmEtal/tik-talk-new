@@ -1,3 +1,10 @@
-<li class="profile-card__skill">
-  JS
-</li>
+@if (tag(); as tag) {
+  <li class="profile-card__skill">
+    {{ tag }}
+  </li>
+} @else {
+  <li>
+    Нету
+  </li>
+}
+

@@ -1,0 +1,12 @@
+:host{
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  align-items: center;
+  gap: 24px;
+}
+
+.profile-header__decr {
+  .h4 {
+    margin-bottom: 5px;
+  }
+}

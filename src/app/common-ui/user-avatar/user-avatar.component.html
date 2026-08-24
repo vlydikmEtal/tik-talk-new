@@ -1,0 +1,15 @@
+@if (profile(); as profile) {
+  @if (profile.avatarUrl) {
+    <img
+      class="avatar-img"
+      [src]="profile.avatarUrl | ImgUrl"
+      [alt]="profile.lastName"
+    />
+  } @else {
+    <img
+      class="avatar-img"
+      src="/assets/images/svg/avatar.svg"
+      [alt]="profile.lastName"
+    />
+  }
+}

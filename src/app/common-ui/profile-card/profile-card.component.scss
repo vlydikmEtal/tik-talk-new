@@ -2,8 +2,16 @@
   border: 1px solid var(--ligth-color);
   padding: 32px 24px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr) 250px 1fr;
   gap: 32px;
+
+  @media(max-width: 998px) {
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-items: center;
+    padding: 20px 18px;
+    gap: 18px;
+  }
 }
 
 .avatar-name {
@@ -16,12 +24,42 @@
   width: 70px;
   height: 70px;
   border-radius: 50%;
-
   overflow: hidden;
+
+  @media(max-width: 998px) {
+    width: 55px;
+    height: 55px;
+  }
+}
+
+.profile-card__description {
+  font-size: 12px;
+  font-weight: 500;
+
+  @media(max-width: 998px) {
+    text-align: center;
+  }
 }
 
 .profile-card__name {
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.skill-tag {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  height: min-content;
+
+  @media(max-width: 998px) {
+    justify-content: center;
+  }
+}
+
+.profile-card__action-btns {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }

@@ -1,0 +1,47 @@
+<a [routerLink]="['/']">
+  <img class="mb20 ml14" src="/assets/images/svg/logo-small.svg" alt="logo" />
+</a>
+
+<nav class="sidebar-menu">
+  <ul class="menu-list">
+    @for (menu of menuItems; track menu.label) {
+      <li class="menu-item">
+        <a
+          class="menu-link"
+          [routerLink]="[menu.link]"
+          routerLinkActive="active"
+        >
+          <svg class="svg16" [icon]="menu.icon"></svg>
+          {{ menu.label }}
+        </a>
+      </li>
+    }
+  </ul>
+</nav>
+
+<p class="medium-text mb20">Подписчики</p>
+
+@for (subscriber of subscribers(); track subscriber.id) {
+  <tt-subscriber-card [subscribers]="subscriber"></tt-subscriber-card>
+}
+
+<div class="mt20 to-subscribers">
+  <a class="to-subscribers-link medium-text" [routerLink]="['/subscribers']">
+    Все подписчики
+    <svg class="svg16" icon="arrow"></svg>
+  </a>
+</div>
+
+
+<footer class="sidebar-footer">
+  @if (me(); as me) {
+    <tt-user-avatar [profile]="me"></tt-user-avatar>
+
+    <p class="medium-text username-text">{{ me.username }}</p>
+
+    <a class="settings-btn" [routerLink]="['/settings']">
+      <svg class="svg16" icon="setting"></svg>
+    </a>
+
+  }
+</footer>

@@ -1,0 +1,92 @@
+:host {
+  display: block;
+  height: 100dvh;
+  background: var(--dark-color);
+  padding: 20px 12px;
+  position: relative;
+}
+
+.sidebar-menu {
+  margin-bottom: 20px;
+}
+
+.menu-list {
+  width: 100%;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.menu-item {
+  width: 100%;
+}
+
+.menu-link {
+  display: flex;
+  padding: 12px 13px;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 4px;
+  gap: 13px;
+  width: 100%;
+  text-decoration: none;
+  border: none;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--ligth-color);
+  background: none;
+
+  &:hover, &:focus-visible {
+    background: var(--hover-color);
+    color: var(--primary-color);
+  }
+
+  &.active {
+    color: var(--primary-color);
+  }
+}
+
+.to-subscribers-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: var(--primary-color);
+}
+
+.sidebar-footer {
+  width: calc(100% - 24px);
+  position: absolute;
+  bottom: 20px;
+  padding: 4px 16px;
+  background: var(--hover-color);
+  border-radius: 4px;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 32px 1fr 16px;
+  gap: 12px;
+
+  &:hover {
+    .username-text {
+      color: var(--primary-color);
+    }
+
+    .settings-btn {
+      color: var(--primary-color);
+    }
+  }
+}
+
+.username-text {
+  color: var(--ligth-color);
+
+}
+
+.settings-btn {
+  text-decoration: none;
+  color: var(--ligth-color);
+
+  display: grid;
+  place-content: center;
+}

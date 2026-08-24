@@ -1,0 +1,23 @@
+:host {
+  width: 32px;
+  height: 32px;
+
+  .avatar-img {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  &.size112 {
+    width: 112px;
+    height: 112px;
+
+    .avatar-img {
+      width: 112px;
+      height: 112px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+}

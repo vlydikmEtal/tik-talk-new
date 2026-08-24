@@ -1,0 +1,101 @@
+@if (profile(); as profile) {
+  <div class="profile-header__wrapper">
+    <tt-profile-header [profile]="profile"></tt-profile-header>
+
+    <tt-profile-stack [profile]="profile"></tt-profile-stack>
+  </div>
+
+  <form class="profile-form" [formGroup]="form">
+    <div class="profile-form__wrapper">
+      <div class="two-columns">
+        <label class="tt-form-label">
+          <span class="tt-form-label__text">Имя</span>
+
+          <input
+            class="tt-form-input"
+            type="text"
+            placeholder="Имя"
+            formControlName="firstName"
+          />
+        </label>
+
+        <label class="tt-form-label">
+          <span class="tt-form-label__text">Фамилия</span>
+
+          <input
+            class="tt-form-input"
+            type="text"
+            placeholder="Фамилия"
+            formControlName="lastName"
+          />
+        </label>
+      </div>
+
+      <label class="tt-form-label">
+        <span class="tt-form-label__text">Telegram username</span>
+
+        <input
+          class="tt-form-input"
+          type="text"
+          placeholder="Telegram username"
+          formControlName="username"
+        />
+      </label>
+
+      <label class="tt-form-label">
+        <span class="tt-form-label__text">О себе</span>
+
+        <textarea
+          class="tt-form-input tt-textarea"
+          formControlName="description"
+          rows="4"
+        ></textarea>
+      </label>
+
+      <label class="tt-form-label">
+        <span class="tt-form-label__text">Аватарка</span>
+
+        <tt-avatar-upload></tt-avatar-upload>
+      </label>
+
+      <label class="tt-form-label">
+        <span class="tt-form-label__text">Навыки (Стэк)</span>
+
+        <input
+          class="tt-form-input"
+          type="text"
+          placeholder="Навыки (Стэк)"
+          formControlName="stack"
+        />
+      </label>
+    </div>
+
+    <div class="profile-form__btns">
+      <div class="profile-btns__exit">
+        <button
+          class="btn--border"
+          (click)="logout()"
+        >
+          <svg class="svg16" icon="delete"></svg>
+        </button>
+
+        <button
+          class="btn--border"
+          (click)="logout()"
+        >
+          <svg class="svg16" icon="exit"></svg>
+        </button>
+      </div>
+
+      <div class="profile-btns__save">
+        <button class="btn btn--border" [routerLink]="['/profile/me']">
+          Отмена
+        </button>
+
+        <button class="btn" (click)="onSave()">
+          Сохранить
+        </button>
+      </div>
+    </div>
+  </form>
+}

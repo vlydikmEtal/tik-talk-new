@@ -1,0 +1,58 @@
+@if (profile(); as profile) {
+  <header class="profile-page__header">
+    <tt-profile-header [profile]="profile"></tt-profile-header>
+
+    <a [routerLink]="['/settings']" class="btn to-setting-btn btn--center">
+      Редактировать
+      <svg class="svg16" icon="setting"></svg>
+    </a>
+  </header>
+
+  <main class="profile-page__main">
+    <tt-post-feed></tt-post-feed>
+
+    <div>
+      <h3 class="h6 mb16">Подписчики</h3>
+
+      <div class="subscriber-wrapper mb32">
+        <ul class="profile-page__list">
+          @for (subscriber of subscribers(); track subscriber.id) {
+            <li class="profile-page__item">
+              <a
+                class="subscriber-avatar-btn"
+                [routerLink]="['/profile', subscriber.id]"
+              >
+                <img
+                  class="size36"
+                  [src]="subscriber.avatarUrl | ImgUrl"
+                  [alt]="subscriber.lastName"
+                />
+              </a>
+            </li>
+          }
+        </ul>
+
+        <a class="to-subscriber-search" [routerLink]="['/search']">
+          <svg class="svg16" icon="plus"></svg>
+        </a>
+      </div>
+
+      <div class="skills-wrapper">
+        <h3 class="h6 mb16">Навыки</h3>
+
+        <ul class="skills-wrapper__list mb32">
+          @for (skill of profile.stack; track skill) {
+            <li class="skills-wrapper__item skill-item">
+              {{ skill }}
+            </li>
+          }
+        </ul>
+
+        <h3 class="h6 mb16">О Себе</h3>
+        <p class="medium-text color--white">
+          {{ profile.description }}
+        </p>
+      </div>
+    </div>
+  </main>
+}

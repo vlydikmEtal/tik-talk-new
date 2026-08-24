@@ -1,0 +1,15 @@
+@if (subscribers(); as subscribers) {
+  <a class="subscribers-link link-text" [routerLink]="['/profile', subscribers.id]">
+    <img
+      class="subscriber-avatar"
+      [src]="subscribers.avatarUrl | ImgUrl"
+      [alt]="subscribers.lastName"
+    >
+
+    <strong class="link-text">{{subscribers.firstName}}  {{subscribers.lastName}}</strong>
+  </a>
+} @else {
+  Нету ничего...
+}
+
+

@@ -1,0 +1,14 @@
+@if (profile(); as profile) {
+  <h3 class="h6 mb16">Навыки</h3>
+
+  <ul class="skills-list mb32">
+    @for (skill of profile.stack; track  skill) {
+      <li class="skills-item skill-item">
+        {{skill}}
+      </li>
+    }
+  </ul>
+
+  <h3 class="h6 mb16">О Себе</h3>
+  <p class="medium-text color--white">{{profile.description}}</p>
+}

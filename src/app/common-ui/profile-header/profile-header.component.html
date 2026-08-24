@@ -1,0 +1,10 @@
+@if (profile(); as profile) {
+  <tt-user-avatar class="size112" [profile]="profile"></tt-user-avatar>
+
+  <div class="profile-header__decr">
+    <h1 class="h4">{{profile.firstName}}  {{profile.lastName}}</h1>
+    <p class="subtitle">{{profile.username}}</p>
+  </div>
+} @else {
+  нету
+}

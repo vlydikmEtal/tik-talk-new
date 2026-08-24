@@ -1,25 +1,37 @@
-<div class="profile-card">
-  <div class="avatar-name">
-    <img src="/assets/images/avatar.png" alt="avatar" class="profile-card__avatar">
+@if (profile(); as profile) {
+  <div class="profile-card">
+    <div class="avatar-name">
+      <img [src]="profile.avatarUrl | ImgUrl" [alt]="profile.username" class="profile-card__avatar">
 
-    <div class="profile-card__name">
-      <strong class="h6">Райн Гослинг</strong>
-      <span>ryan</span>
+      <div class="profile-card__name">
+        <strong class="h6">{{profile.firstName}} {{profile.lastName}}</strong>
+        <span class="subtitle">{{profile.username}}</span>
+      </div>
+    </div>
+
+    <div class="profile-card__description">
+      <p>
+        {{profile.description}}
+      </p>
+    </div>
+
+    <ul class="skill-tag">
+      @for (tags of profile.stack; track tags) {
+        <app-profile-tag [tag]="tags"></app-profile-tag>
+      }
+    </ul>
+
+    <div class="profile-card__action-btns">
+      <button class="btn btn--center" type="button" (click)="onSubscribe()">
+        {{ isSubscribed() }}
+        <svg class="svg16" icon="subscribe"></svg>
+      </button>
+
+      <a class="btn btn--link" [routerLink]="['/profile', profile.id]">
+        <svg class="svg16" icon="arrow-top"></svg>
+      </a>
     </div>
   </div>
-
-  <div class="profile-card__description">
-    <p>Список навыков, который мы обсудили выше, — основа резюме, но не единственная его часть. Также можно рассказать о себе в классическом смысле — этот раздел можно добавить в сопроводительное письмо.</p>
-  </div>
-
-  <ul class="skill-tag">
-    <app-profile-tag></app-profile-tag>
-  </ul>
-
-  <div class="profile-card__action-btns">
-    <button class="btn" type="button">
-      Подписаться
-
-    </button>
-  </div>
-</div>
+} @else {
+  Нету
+}

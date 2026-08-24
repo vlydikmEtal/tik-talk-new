@@ -5,15 +5,12 @@
   color: var(--ligth-color);
   transition: all .3s ease;
   list-style: none;
-  display: inline;
-  height: min-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 24px;
   font-size: 12px;
   font-weight: 700;
-  margin-right: 4px;
-
-  &:last-child {
-    margin-right: 0;
-  }
 
   &:hover {
     border: 1px solid var(--primary-color);
