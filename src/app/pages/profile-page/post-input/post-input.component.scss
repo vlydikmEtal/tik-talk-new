@@ -1,0 +1,40 @@
+:host {
+  display: grid;
+  padding: 16px;
+  background: var(--dark-color);
+  border: 1px solid var(--ligth-color);
+  grid-template-columns: 32px 1fr 100px;
+  gap: 12px;
+  align-items: center;
+
+  &.comment {
+    border: 1px dashed var(--ligth-color);
+    border-radius: 5px;
+  }
+}
+
+.hidden-textarea {
+  resize: none;
+  background: var(--dark-color);
+  border: none;
+  color: var(--ligth-color);
+  font-family: "JetBrains Mono", sans-serif;
+  padding: 8px;
+
+  &:hover,
+  &:focus-visible {
+    outline: 1px solid var(--primary-color);
+  }
+
+  &::placeholder {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: var(--input-placeholder);
+  }
+}
+
+.btn-wrapper {
+  display: flex;
+  gap: 12px;
+}

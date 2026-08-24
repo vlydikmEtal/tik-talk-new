@@ -1,15 +1,15 @@
-@if (profile(); as profile) {
-  @if (profile.avatarUrl) {
+@if (avatarUrl(); as avatarUrl) {
+  @if (avatarUrl) {
     <img
       class="avatar-img"
-      [src]="profile.avatarUrl | ImgUrl"
-      [alt]="profile.lastName"
+      [src]="avatarUrl | ImgUrl"
+      [alt]="avatarUrl"
     />
   } @else {
     <img
       class="avatar-img"
       src="/assets/images/svg/avatar.svg"
-      [alt]="profile.lastName"
+      [alt]="avatarUrl"
     />
   }
 }

@@ -1,0 +1,16 @@
+@if (comment(); as comment) {
+  <tt-user-avatar
+    [avatarUrl]="comment.author.avatarUrl"
+  ></tt-user-avatar>
+
+  <div class="comment-body">
+    <header class="comment-header">
+      <strong class="medium-text gray--color">{{comment.author.username}}</strong>
+      <span class="post-created-at">{{comment.createdAt | date: 'HH:mm dd.MM.YY'}}</span>
+    </header>
+
+    <div class="comment__text-wrapper">
+      <p class="comment-text">{{comment.text}}</p>
+    </div>
+  </div>
+}
