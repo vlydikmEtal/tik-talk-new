@@ -1,0 +1,13 @@
+:host {
+  display: grid;
+  gap: 16px;
+}
+
+.posts-wrapper {
+  display: grid;
+  gap: 16px;
+  overflow-y: auto;
+}
+.posts-wrapper::-webkit-scrollbar {
+  display: none;
+}

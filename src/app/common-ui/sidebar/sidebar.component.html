@@ -35,7 +35,7 @@
 
 <footer class="sidebar-footer">
   @if (me(); as me) {
-    <tt-user-avatar [profile]="me"></tt-user-avatar>
+    <tt-user-avatar [avatarUrl]="me.avatarUrl"></tt-user-avatar>
 
     <p class="medium-text username-text">{{ me.username }}</p>
 

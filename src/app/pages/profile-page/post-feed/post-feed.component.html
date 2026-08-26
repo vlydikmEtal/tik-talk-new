@@ -1,3 +1,13 @@
-<tt-post-input></tt-post-input>
+<tt-post-input
+  (created)="onPostCreated($event)"
+></tt-post-input>
 
-<tt-post></tt-post>
+<div class="posts-wrapper">
+  @for (post of feed(); track post.id) {
+    <tt-post
+      [post]="post"
+      [isCommentInput]="true"
+      (createComment)="onCommentCreated(post.id, $event)"
+    ></tt-post>
+  }
+</div>

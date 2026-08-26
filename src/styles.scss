@@ -54,6 +54,25 @@ body {
   border-radius: 4px;
 }
 
+.btn-emoji {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+}
+
+.btn-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--primary-color);
+  display: grid;
+  place-content: center;
+  border: 1px solid var(--dark-color);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 .btn--center {
   display: flex;
   align-items: center;
@@ -143,6 +162,10 @@ body {
 .color--white {
   color: var(--ligth-color);
   font-weight: 500;
+}
+
+.gray--color {
+  color: var(--input-placeholder);
 }
 
 .color--purple {

@@ -1,1 +1,46 @@
-<p>post works!</p>
+@if (post(); as post) {
+  <tt-user-avatar [avatarUrl]="post.author.avatarUrl"> </tt-user-avatar>
+
+  <main class="post-body">
+    <div class="post-header">
+      <strong class="post__author">
+        {{ post.author.firstName }}
+        {{ post.author.lastName }}
+        <span class="post-created-at">
+          {{post.createdAt | currentDate }}
+        </span>
+      </strong>
+    </div>
+    <p class="medium-text">{{post.content}}</p>
+
+    <div class="post-counters">
+      <div class="post-comments">
+        <svg class="svg16" icon="comments"></svg>
+        <span class="post-count">{{comment().length}}</span>
+      </div>
+      <button
+        class="post-likes"
+        type="button"
+        (click)="onLike($event)"
+        [class.liked]="isLiked()"
+      >
+        <svg class="svg16" icon="like"></svg>
+        <span class="like-count">{{like()}}</span>
+      </button>
+    </div>
+
+    <div class="post__comments-wrapper">
+      @for (comment of comment(); track comment.id) {
+        <tt-comment
+          [comment]="comment"
+        ></tt-comment>
+      }
+    </div>
+
+    <tt-post-input
+      (created)="onCreated($event)"
+      [postId]="post.id"
+      [isCommentInput]="isCommentInput()"
+    ></tt-post-input>
+  </main>
+}

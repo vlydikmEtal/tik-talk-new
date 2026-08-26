@@ -1,6 +1,5 @@
-import {Component, input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, input} from '@angular/core';
 import {ImgUrlPipe} from "../../helpers/pipes/image-url.pipe";
-import {Profile} from '../../data/interfaces/profile.interface';
 
 @Component({
   selector: 'tt-user-avatar',
@@ -9,8 +8,9 @@ import {Profile} from '../../data/interfaces/profile.interface';
         ImgUrlPipe
     ],
   templateUrl: './user-avatar.component.html',
-  styleUrl: './user-avatar.component.scss'
+  styleUrl: './user-avatar.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserAvatarComponent {
-  profile = input<Profile>()
+  avatarUrl = input<string | null>(null)
 }
