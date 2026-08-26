@@ -6,7 +6,7 @@
   <div class="comment-body">
     <header class="comment-header">
       <strong class="medium-text gray--color">{{comment.author.username}}</strong>
-      <span class="post-created-at">{{comment.createdAt | date: 'HH:mm dd.MM.YY'}}</span>
+      <span class="post-created-at">{{comment.createdAt | currentDate }}</span>
     </header>
 
     <div class="comment__text-wrapper">

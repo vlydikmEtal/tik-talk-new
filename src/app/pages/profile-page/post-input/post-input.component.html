@@ -4,8 +4,8 @@
   <textarea
     class="hidden-textarea"
     placeholder="Напишите что-нибудь"
-
     (input)="onTextAreaInput($event)"
+    (keydown.enter)="onCreatePost()"
     [(ngModel)]="postText"
   ></textarea>
 

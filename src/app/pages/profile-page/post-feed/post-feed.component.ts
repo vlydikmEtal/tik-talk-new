@@ -1,16 +1,18 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
+  ChangeDetectionStrategy, ChangeDetectorRef,
+  Component, DestroyRef,
   ElementRef,
   HostListener,
-  inject,
+  inject, input,
   Renderer2,
 } from '@angular/core';
 import { PostInputComponent } from '../post-input/post-input.component';
 import { PostComponent } from '../post/post.component';
 import { PostService } from '../../../data/services/post.service';
 import { debounceTime, firstValueFrom, fromEvent, timer } from 'rxjs';
+import {ProfileService} from '../../../data/services/profile.service';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'tt-post-feed',
@@ -24,21 +26,20 @@ export class PostFeedComponent implements AfterViewInit {
   #postService = inject(PostService);
   #hostElementRef = inject(ElementRef);
   #r2 = inject(Renderer2);
+  #destroyRef = inject(DestroyRef)
 
   feed = this.#postService.posts;
-
-  @HostListener('window:resize')
-  onWindowResize() {
-    this.resizeFeed();
-  }
-
-  constructor() {
-    firstValueFrom(this.#postService.fetchPost());
-  }
+  profile = inject(ProfileService).me;
+  isCommentInput = input<boolean>(false)
 
   ngAfterViewInit() {
+    this.resizeFeed();
+
     fromEvent(window, 'resize')
-      .pipe(debounceTime(1000))
+      .pipe(
+        debounceTime(200),
+        takeUntilDestroyed(this.#destroyRef)
+      )
       .subscribe(() => this.resizeFeed());
   }
 
@@ -50,6 +51,32 @@ export class PostFeedComponent implements AfterViewInit {
       this.#hostElementRef.nativeElement,
       'height',
       `${height}px`,
+    );
+  }
+
+  async onPostCreated(text: string) {
+    if (!text) return
+
+    await firstValueFrom(
+      this.#postService.createPost({
+        title: 'Клевый пост',
+        content: text,
+        authorId: this.profile()!.id
+      })
+    )
+  }
+
+  async onCommentCreated(postId: number, text: string) {
+    const currentProfile = this.profile();
+
+    if (!text || !currentProfile) return;
+
+    await firstValueFrom(
+      this.#postService.createComment({
+        text,
+        authorId: currentProfile.id,
+        postId
+      })
     );
   }
 }

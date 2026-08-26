@@ -1,5 +1,5 @@
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef,
+  ChangeDetectionStrategy,
   Component, HostBinding,
   inject, input, output,
   Renderer2, signal,
@@ -7,9 +7,7 @@ import {
 import { UserAvatarComponent } from '../../../common-ui/user-avatar/user-avatar.component';
 import { ProfileService } from '../../../data/services/profile.service';
 import { SvgIconComponent } from '../../../common-ui/svg-icon/svg-icon.component';
-import { PostService } from '../../../data/services/post.service';
 import { FormsModule } from '@angular/forms';
-import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'tt-post-input',
@@ -21,20 +19,18 @@ import { firstValueFrom } from 'rxjs';
 })
 export class PostInputComponent {
   #r2 = inject(Renderer2);
-  #postService = inject(PostService);
-  #cdr = inject(ChangeDetectorRef)
+  profile = inject(ProfileService).me;
 
-  created = output()
+  created = output<string>()
+
+  postText = signal<string>('')
   isCommentInput = input<boolean>(false)
   postId = input<number>(0)
-  profile = inject(ProfileService).me;
 
   @HostBinding('class.comment')
   get isComment() {
     return this.isCommentInput()
   }
-
-  postText: string = '';
 
   onTextAreaInput(event: Event) {
     const textarea = event.target as HTMLTextAreaElement;
@@ -44,33 +40,11 @@ export class PostInputComponent {
   }
 
   onCreatePost() {
-    if (!this.postText) return;
+    const text = this.postText();
 
-    if (this.isCommentInput()) {
-      firstValueFrom(
-        this.#postService.createComment({
-          text: this.postText,
-          authorId: this.profile()!.id,
-          postId: this.postId()
-        })
-      ).then(() => {
-        this.postText = ''
-        this.created.emit()
-        this.#cdr.markForCheck()
-      })
+    if (!text || text.length === 0) return
 
-      return
-    }
-
-    firstValueFrom(
-      this.#postService.createPost({
-        title: 'Клевый пост',
-        content: this.postText,
-        authorId: this.profile()!.id,
-      })
-    ).then(() => {
-      this.postText = ''
-      this.#cdr.markForCheck()
-    })
+    this.created.emit(text)
+    this.postText.set('')
   }
 }

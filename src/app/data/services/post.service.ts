@@ -1,5 +1,5 @@
 import {inject, Injectable, signal} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {CommentPost, CommentCreateDto, Post, PostCreateDto} from '../interfaces/post.interface';
 import {map, switchMap, tap} from 'rxjs';
 
@@ -21,8 +21,14 @@ export class PostService {
     )
   }
 
-  fetchPost() {
-    return this.#http.get<Post[]>(`${this.baseApiUrl}post/`)
+  fetchPost(userId?: number) {
+    let params = new HttpParams()
+
+    if (userId) {
+      params = params.set('user_id', userId)
+    }
+
+    return this.#http.get<Post[]>(`${this.baseApiUrl}post/`, {params})
       .pipe(
         tap(res => this.posts.set(res))
       );
@@ -37,5 +43,9 @@ export class PostService {
       .pipe(
         map(res => res.comments)
       )
+  }
+
+  createLike(postId: number) {
+    return this.#http.post<string>(`${this.baseApiUrl}post/like/${postId}`, {})
   }
 }
